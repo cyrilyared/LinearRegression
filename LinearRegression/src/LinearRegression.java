@@ -125,6 +125,7 @@ public class LinearRegression {
 	 * 
 	 * @param weights array of doubles for current weights
 	 * @param bias double for bias
+	 * @param precision decimal places result should be rounded to
 	 */
 	public static void printWeights(double weights[], double bias, int precision) {
 		String output = String.valueOf(roundDouble(bias, precision));

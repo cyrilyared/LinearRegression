@@ -2,7 +2,7 @@
 
 Uses linear regression (batch gradient descent) to find the linear relationship between a specified number of features and the target variable.
 
-The user can specify the number of parameters, the size of the training set, the learning rate, the minimum precision required for convergence and the maximum number of epochs. 
+The user can specify the number of parameters, the size of the training set, the learning rate, the minimum precision required for convergence, the maximum number of epochs, and the rounding for the result. 
 
 The relationship generated is based on if either the model has converged or if the maximum number of epochs has been reached.
 
