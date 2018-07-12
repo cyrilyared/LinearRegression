@@ -46,18 +46,26 @@ public class LinearRegression {
 	 */
 	public static void calculateLinearRegression(int featureNum, int sizeTrainingSet, double alpha, double convergenceError, int maxEpochs, int precision, RowData inputDataset[], RowData targetDataset) {
 		double[] weights = new double[featureNum];
+		double[] tempWeights = new double[featureNum];
 		double bias = 0;
+		double tempBias = 0;
 		int epoch;
 		
 		for(epoch = 0; epoch < maxEpochs; epoch++) {
 			double currentError = 0;
-			bias = bias - alpha*getBiasGradient(sizeTrainingSet, weights, inputDataset, bias, targetDataset);
+			tempBias = bias - alpha/sizeTrainingSet*getBiasGradient(sizeTrainingSet, weights, inputDataset, bias, targetDataset);
 			
 			for(int i = 0; i < featureNum; i++) {
 				double gradient = getGradient(i, sizeTrainingSet, weights, inputDataset, bias, targetDataset);
-				weights[i] = weights[i] - alpha*gradient;
-				currentError = findMax(currentError, findAbs(alpha*gradient));
+				tempWeights[i] = weights[i] - alpha/sizeTrainingSet*gradient;
+				currentError = findMax(currentError, findAbs(alpha/sizeTrainingSet*gradient));
 			}
+			
+			bias = tempBias;
+			for(int i = 0; i < featureNum; i++) {
+				weights[i] = tempWeights[i];
+			}
+			
 			if(currentError < findAbs(convergenceError)) {
 				break;
 			}
